@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mix By Design Podcast</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #b22234 0%, #ffffff 25%, #3c3b6b 50%, #ffffff 75%, #b22234 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: #2c2c2c;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 60px 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            max-width: 700px;
+            width: 100%;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #b22234;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #3c3b6b;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .description {
+            font-size: 1.1em;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .podcast-section {
+            margin: 40px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #b22234 0%, #3c3b6b 100%);
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(178, 34, 52, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .podcast-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(178, 34, 52, 0.5);
+        }
+
+        .podcast-section h2 {
+            color: #ffffff;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .podcast-link {
+            display: inline-block;
+            background: #ffffff;
+            color: #b22234;
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 0 0 20px rgba(255, 255, 255, 0.5); }
+            50% { box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 0 0 40px rgba(255, 255, 255, 0.8); }
+        }
+
+        .podcast-link:hover {
+            background: #f0f0f0;
+            transform: scale(1.05);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .btn-donate {
+            background: linear-gradient(135deg, #b22234 0%, #c41e3a 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(178, 34, 52, 0.3);
+        }
+
+        .btn-donate:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(178, 34, 52, 0.5);
+        }
+
+        .logo-container {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo-container:hover {
+            opacity: 1;
+        }
+
+        .logo-container img {
+            max-width: 80px;
+            height: auto;
+            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
+        }
+
+        .message {
+            font-size: 0.95em;
+            color: #666;
+            margin-top: 50px;
+            line-height: 1.6;
+        }
+
+        audio {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .container {
+                padding: 40px 20px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .podcast-link {
+                font-size: 1em;
+                padding: 12px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Auto-playing welcome audio -->
+    <audio autoplay>
+        <source src="welcometomix.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        <h1>Mix By Design</h1>
+        <p class="subtitle">Perspectives From Both Sides of America</p>
+        
+        <p class="description">
+            Welcome to Mix By Design Podcast - where we explore the rich tapestry of American identity. 
+            Join us as we share authentic conversations bridging perspectives as a Black and White American family, 
+            exploring politics, culture, and the values that unite us.
+        </p>
+
+        <!-- Highlighted Podcast Section -->
+        <div class="podcast-section">
+            <h2>🎙️ Listen Now</h2>
+            <p style="color: white; margin-bottom: 20px; font-size: 1.05em;">
+                Discover authentic conversations that matter
+            </p>
+            <a href="https://rss.com/podcasts/mix-by-design/?_gl=1%2ax4a3sx%2a_gcl_au%2aMTI2NjQ1NTA4LjE3Njk5NDY2MjI.#about" 
+               target="_blank" 
+               class="podcast-link">
+                🔗 Subscribe to Mix By Design Podcast
+            </a>
+        </div>
+
+        <!-- Button Group -->
+        <div class="button-group">
+            <a href="https://cash.app/$MixbyDesing" target="_blank" class="btn btn-donate">
+                💝 Support Us - Donate
+            </a>
+        </div>
+
+        <!-- Message -->
+        <p class="message">
+            Thank you for tuning in. Your support helps us continue this important conversation.
+        </p>
+    </div>
+
+    <!-- Logo at bottom -->
+    <div class="logo-container">
+        <img src="logo1.pg" alt="Mix By Design Logo">
+    </div>
+</body>
+</html>
