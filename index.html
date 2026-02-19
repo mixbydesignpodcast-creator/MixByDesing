@@ -1,29 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mix By Design Podcast</title>
     <style>
-        .hero-description {
-            color: #e8f0ff;
-        }
-        .podcast-info p {
-            color: #e8f0ff;
-        }
-        .footer-message {
-            color: #e8f0ff;
-        }
-        /* Other styles remain unchanged */
+        body { font-family: Arial, sans-serif; background-color: #ffffff; color: #333333; }
+        .light-text { color: #e8f0ff; }
+        header { background: #333333; color: #ffffff; padding: 20px; }
+        nav a { color: #ffffff; margin: 0 15px; text-decoration: none; }
+        .hero { padding: 50px; text-align: center; }
+        .welcome-btn { padding: 10px 20px; background: #007BFF; color: #ffffff; border: none; border-radius: 5px; }
+        .podcast-section { padding: 20px; }
+        footer { background: #333333; color: #ffffff; text-align: center; padding: 10px 0; }
     </style>
 </head>
 <body>
-    <div class="hero-description">
-        Welcome to the Mix By Design Podcast!
-    </div>
-    <div class="podcast-info">
-        <p>Join us as we explore design and creativity.</p>
-    </div>
-    <footer class="footer-message">
-        Thank you for listening!
+    <header>
+        <h1 class="light-text">Mix By Design Podcast</h1>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#podcasts">Podcasts</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+    <section class="hero">
+        <h2>Welcome to our podcast!</h2>
+        <button class="welcome-btn">Listen Now</button>
+    </section>
+    <section class="podcast-section">
+        <h2 class="light-text">Podcast Info</h2>
+        <p class="light-text">Join us every week as we discuss various design topics and interview industry experts. Your source for inspiration and learning!</p>
+    </section>
+    <footer>
+        <p class="light-text">© 2026 Mix By Design. All rights reserved.</p>
+        <div>
+            <a class="light-text" href="#">Facebook</a>
+            <a class="light-text" href="#">Twitter</a>
+            <a class="light-text" href="#">Instagram</a>
+        </div>
     </footer>
 </body>
 </html>
