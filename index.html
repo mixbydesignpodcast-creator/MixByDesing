@@ -5,36 +5,322 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mix By Design Podcast</title>
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background: url('path/to/stars-background.jpg') no-repeat center center fixed;
-            background-size: cover;
+            box-sizing: border-box;
         }
-        .hero {
-            background-color: rgba(255, 0, 0, 0.5);
-            color: white;
-            text-align: center;
-            padding: 100px 20px;
+
+        html {
+            scroll-behavior: smooth;
         }
-        .button {
-            background-color: #3c3b3b; /* dark color for button */
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            cursor: pointer;
-            font-size: 18px;
-            border-radius: 5px;
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #b22234 0%, #ffffff 25%, #3c3b6b 50%, #ffffff 75%, #b22234 100%);
+            color: #2c2c2c;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Stars Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, white 0%, white),
+                radial-gradient(2px 2px at 60% 70%, white 0%, white),
+                radial-gradient(1px 1px at 50% 50%, white 0%, white),
+                radial-gradient(1px 1px at 80% 10%, white 0%, white),
+                radial-gradient(2px 2px at 90% 60%, white 0%, white),
+                radial-gradient(1px 1px at 30% 80%, white 0%, white),
+                radial-gradient(1.5px 1.5px at 40% 90%, black 0%, black),
+                radial-gradient(1px 1px at 10% 60%, black 0%, black),
+                radial-gradient(2px 2px at 70% 40%, black 0%, black),
+                radial-gradient(1px 1px at 45% 20%, white 0%, white),
+                radial-gradient(1.5px 1.5px at 75% 85%, black 0%, black),
+                radial-gradient(1px 1px at 25% 45%, white 0%, white);
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 60px 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            max-width: 700px;
+            width: 100%;
+            margin-top: 40px;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #b22234;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #3c3b6b;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .description {
+            font-size: 1.1em;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .podcast-section {
+            margin: 40px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #b22234 0%, #3c3b6b 100%);
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(178, 34, 52, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .podcast-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(178, 34, 52, 0.5);
+        }
+
+        .podcast-section h2 {
+            color: #ffffff;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .podcast-link {
+            display: inline-block;
+            background: #ffffff;
+            color: #b22234;
+            padding: 15px 35px;
             text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 0 0 20px rgba(255, 255, 255, 0.5); }
+            50% { box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 0 0 40px rgba(255, 255, 255, 0.8); }
+        }
+
+        .podcast-link:hover {
+            background: #f0f0f0;
+            transform: scale(1.05);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .btn-donate {
+            background: linear-gradient(135deg, #b22234 0%, #c41e3a 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(178, 34, 52, 0.3);
+        }
+
+        .btn-donate:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(178, 34, 52, 0.5);
+        }
+
+        .btn-welcome {
+            background: linear-gradient(135deg, #3c3b6b 0%, #5a5a9d 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(60, 59, 107, 0.3);
+        }
+
+        .btn-welcome:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(60, 59, 107, 0.5);
+        }
+
+        .btn-welcome:active {
+            transform: scale(0.98);
+        }
+
+        .message {
+            font-size: 0.95em;
+            color: #666;
+            margin-top: 50px;
+            margin-bottom: 80px;
+            line-height: 1.6;
+            padding-bottom: 40px;
+        }
+
+        .logo-container {
+            width: 100%;
+            max-width: 700px;
+            margin-top: 60px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: center;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo-container:hover {
+            opacity: 1;
+        }
+
+        .logo-container img {
+            max-width: 100px;
+            height: auto;
+            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
+        }
+
+        audio {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .container {
+                padding: 40px 20px;
+                margin-top: 30px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .podcast-link {
+                font-size: 1em;
+                padding: 12px 25px;
+            }
+
+            .message {
+                margin-top: 40px;
+                margin-bottom: 60px;
+            }
+
+            .logo-container {
+                margin-top: 40px;
+                margin-bottom: 20px;
+            }
+
+            .logo-container img {
+                max-width: 80px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="hero">
-        <h1>Welcome to the Mix By Design Podcast</h1>
-        <p>Your go-to source for all things podcasting!</p>
-        <a class="button" href="#">Welcome</a>
+    <div class="content-wrapper">
+        <div class="container">
+            <h1>Mix By Design</h1>
+            <p class="subtitle">Perspectives From Both Sides of America</p>
+            
+            <p class="description">
+                Welcome to Mix By Design Podcast - where we explore the rich tapestry of American identity. 
+                Join us as we share authentic conversations bridging perspectives as a Black and White American family, 
+                exploring politics, culture, and the values that unite us.
+            </p>
+
+            <!-- Highlighted Podcast Section -->
+            <div class="podcast-section">
+                <h2>🎙️ Listen Now</h2>
+                <p style="color: white; margin-bottom: 20px; font-size: 1.05em;">
+                    Discover authentic conversations that matter
+                </p>
+                <a href="https://rss.com/podcasts/mix-by-design/?_gl=1%2ax4a3sx%2a_gcl_au%2aMTI2NjQ1NTA4LjE3Njk5NDY2MjI.#about" 
+                   target="_blank" 
+                   class="podcast-link">
+                    🔗 Subscribe to Mix By Design Podcast
+                </a>
+            </div>
+
+            <!-- Button Group -->
+            <div class="button-group">
+                <button class="btn btn-welcome" onclick="playWelcome()">
+                    🎵 Welcome
+                </button>
+                <a href="https://cash.app/$MixbyDesing" target="_blank" class="btn btn-donate">
+                    💝 Support Us - Donate
+                </a>
+            </div>
+
+            <!-- Message -->
+            <p class="message">
+                Thank you for tuning in. Your support helps us continue this important conversation.
+            </p>
+        </div>
+
+        <!-- Logo at bottom -->
+        <div class="logo-container">
+            <img src="logo1.jpg" alt="Mix By Design Logo">
+        </div>
     </div>
+
+    <!-- Audio Element -->
+    <audio id="welcomeAudio">
+        <source src="welcometomix.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        function playWelcome() {
+            const audio = document.getElementById('welcomeAudio');
+            audio.currentTime = 0;
+            audio.play().catch(error => {
+                console.log('Audio playback error:', error);
+            });
+        }
+    </script>
 </body>
 </html>
