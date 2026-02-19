@@ -15,10 +15,19 @@
             scroll-behavior: smooth;
         }
 
+        :root {
+            --red: #B22234;
+            --navy: #002868;
+            --white: #FFFFFF;
+            --light-gray: #F8F9FA;
+            --dark-gray: #333333;
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
         body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #b22234 0%, #ffffff 25%, #3c3b6b 50%, #ffffff 75%, #b22234 100%);
-            color: #2c2c2c;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, var(--red) 0%, var(--white) 30%, var(--navy) 60%, var(--white) 100%);
+            color: var(--dark-gray);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -27,9 +36,10 @@
             padding: 20px;
             position: relative;
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* Stars Background */
+        /* Patriotic Stars Background (white stars on gradient) */
         body::before {
             content: '';
             position: fixed;
@@ -38,106 +48,130 @@
             width: 100%;
             height: 100%;
             background-image: 
-                radial-gradient(2px 2px at 20% 30%, white 0%, white),
-                radial-gradient(2px 2px at 60% 70%, white 0%, white),
-                radial-gradient(1px 1px at 50% 50%, white 0%, white),
-                radial-gradient(1px 1px at 80% 10%, white 0%, white),
-                radial-gradient(2px 2px at 90% 60%, white 0%, white),
-                radial-gradient(1px 1px at 30% 80%, white 0%, white),
-                radial-gradient(1.5px 1.5px at 40% 90%, black 0%, black),
-                radial-gradient(1px 1px at 10% 60%, black 0%, black),
-                radial-gradient(2px 2px at 70% 40%, black 0%, black),
-                radial-gradient(1px 1px at 45% 20%, white 0%, white),
-                radial-gradient(1.5px 1.5px at 75% 85%, black 0%, black),
-                radial-gradient(1px 1px at 25% 45%, white 0%, white);
+                radial-gradient(2px 2px at 20px 30px, var(--white) 50%, transparent 70%),
+                radial-gradient(2px 2px at 80px 120px, var(--white) 50%, transparent 70%),
+                radial-gradient(1.5px 1.5px at 40px 80px, var(--white) 50%, transparent 70%),
+                radial-gradient(2.5px 2.5px at 120px 50px, var(--white) 50%, transparent 70%),
+                radial-gradient(1px 1px at 90px 160px, var(--white) 50%, transparent 70%),
+                radial-gradient(2px 2px at 160px 100px, var(--white) 50%, transparent 70%),
+                radial-gradient(1.5px 1.5px at 60px 200px, var(--white) 50%, transparent 70%);
             background-repeat: repeat;
             background-size: 200px 200px;
             pointer-events: none;
             z-index: 1;
+            opacity: 0.8;
         }
 
         .content-wrapper {
             position: relative;
             z-index: 2;
             width: 100%;
+            max-width: 800px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
         .container {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(var(--white), 0.98);
+            backdrop-filter: blur(10px);
             padding: 60px 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            max-width: 700px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
             width: 100%;
             margin-top: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 40px;
         }
 
         h1 {
-            font-size: 3em;
-            color: #b22234;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
+            font-size: clamp(2.2em, 5vw, 3.5em);
+            background: linear-gradient(135deg, var(--red), var(--navy));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            letter-spacing: 1.5px;
+            font-weight: bold;
         }
 
         .subtitle {
-            font-size: 1.2em;
-            color: #3c3b6b;
+            font-size: clamp(1.1em, 3vw, 1.4em);
+            color: var(--navy);
             margin-bottom: 30px;
             font-style: italic;
+            font-weight: 500;
+        }
+
+        /* Welcome Button under Title */
+        .welcome-btn-container {
+            margin: 30px 0 40px 0;
+            display: flex;
+            justify-content: center;
         }
 
         .description {
             font-size: 1.1em;
-            color: #555;
+            color: var(--dark-gray);
             line-height: 1.8;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
+            text-align: center;
         }
 
         .podcast-section {
-            margin: 40px 0;
-            padding: 30px;
-            background: linear-gradient(135deg, #b22234 0%, #3c3b6b 100%);
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(178, 34, 52, 0.3);
+            margin: 50px 0;
+            padding: 40px;
+            background: linear-gradient(135deg, var(--red), var(--navy));
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(178, 34, 52, 0.3);
+            text-align: center;
             transition: all 0.3s ease;
         }
 
         .podcast-section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(178, 34, 52, 0.5);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(178, 34, 52, 0.4);
         }
 
         .podcast-section h2 {
-            color: #ffffff;
-            font-size: 1.8em;
+            color: var(--white);
+            font-size: 2em;
             margin-bottom: 20px;
+        }
+
+        .podcast-section p {
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 30px;
+            font-size: 1.1em;
         }
 
         .podcast-link {
             display: inline-block;
-            background: #ffffff;
-            color: #b22234;
-            padding: 15px 35px;
+            background: var(--white);
+            color: var(--red);
+            padding: 18px 40px;
             text-decoration: none;
             border-radius: 50px;
             font-weight: bold;
-            font-size: 1.1em;
+            font-size: 1.15em;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            animation: glow 2s ease-in-out infinite;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            animation: pulse-glow 2s ease-in-out infinite;
         }
 
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 0 0 20px rgba(255, 255, 255, 0.5); }
-            50% { box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 0 0 40px rgba(255, 255, 255, 0.8); }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15), 0 0 20px rgba(255, 255, 255, 0.4); }
+            50% { box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15), 0 0 30px rgba(255, 255, 255, 0.7); }
         }
 
         .podcast-link:hover {
-            background: #f0f0f0;
-            transform: scale(1.05);
+            background: #F0F0F0;
+            transform: scale(1.05) translateY(-2px);
+            color: var(--navy);
         }
 
         .button-group {
@@ -145,65 +179,66 @@
             gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: 40px;
+            margin: 40px 0 50px 0;
         }
 
         .btn {
-            padding: 15px 40px;
+            padding: 16px 45px;
             font-size: 1.1em;
             border: none;
             border-radius: 50px;
             cursor: pointer;
             text-decoration: none;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             transition: all 0.3s ease;
             font-weight: bold;
             letter-spacing: 1px;
+            min-width: 200px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .btn-donate {
-            background: linear-gradient(135deg, #b22234 0%, #c41e3a 100%);
-            color: white;
-            box-shadow: 0 4px 15px rgba(178, 34, 52, 0.3);
+            background: linear-gradient(135deg, var(--red), #A61C2E);
+            color: var(--white);
         }
 
         .btn-donate:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(178, 34, 52, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(178, 34, 52, 0.4);
         }
 
         .btn-welcome {
-            background: linear-gradient(135deg, #3c3b6b 0%, #5a5a9d 100%);
-            color: white;
-            box-shadow: 0 4px 15px rgba(60, 59, 107, 0.3);
+            background: linear-gradient(135deg, var(--navy), #1E3A5F);
+            color: var(--white);
         }
 
         .btn-welcome:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(60, 59, 107, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 40, 104, 0.4);
         }
 
-        .btn-welcome:active {
+        .btn:active {
             transform: scale(0.98);
         }
 
         .message {
-            font-size: 0.95em;
+            font-size: 1em;
             color: #666;
-            margin-top: 50px;
-            margin-bottom: 80px;
-            line-height: 1.6;
-            padding-bottom: 40px;
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            font-style: italic;
         }
 
         .logo-container {
             width: 100%;
-            max-width: 700px;
-            margin-top: 60px;
-            margin-bottom: 40px;
             display: flex;
             justify-content: center;
-            opacity: 0.8;
+            margin-top: 50px;
+            margin-bottom: 40px;
+            opacity: 0.9;
             transition: opacity 0.3s ease;
         }
 
@@ -212,50 +247,82 @@
         }
 
         .logo-container img {
-            max-width: 100px;
+            max-width: 120px;
             height: auto;
-            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+            border-radius: 8px;
         }
 
         audio {
             display: none;
         }
 
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2em;
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
             }
 
             .container {
-                padding: 40px 20px;
+                padding: 40px 25px;
                 margin-top: 30px;
+                border-radius: 16px;
+            }
+
+            .header-section {
+                margin-bottom: 30px;
+            }
+
+            h1 {
+                letter-spacing: 1px;
+            }
+
+            .welcome-btn-container {
+                margin: 25px 0 35px 0;
             }
 
             .button-group {
                 flex-direction: column;
+                align-items: center;
             }
 
             .btn {
                 width: 100%;
+                max-width: 300px;
+                min-width: auto;
+            }
+
+            .podcast-section {
+                padding: 30px 20px;
+                margin: 40px 0;
+            }
+
+            .podcast-section h2 {
+                font-size: 1.7em;
             }
 
             .podcast-link {
-                font-size: 1em;
-                padding: 12px 25px;
+                padding: 15px 30px;
+                font-size: 1.05em;
             }
 
             .message {
-                margin-top: 40px;
-                margin-bottom: 60px;
-            }
-
-            .logo-container {
-                margin-top: 40px;
-                margin-bottom: 20px;
+                margin-top: 20px;
+                padding: 15px;
             }
 
             .logo-container img {
-                max-width: 80px;
+                max-width: 100px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            .podcast-section {
+                padding: 25px 15px;
             }
         }
     </style>
@@ -263,8 +330,17 @@
 <body>
     <div class="content-wrapper">
         <div class="container">
-            <h1>Mix By Design</h1>
-            <p class="subtitle">Perspectives From Both Sides of America</p>
+            <div class="header-section">
+                <h1>Mix By Design</h1>
+                <p class="subtitle">Perspectives From Both Sides of America</p>
+                
+                <!-- Welcome MP3 Button Under Title -->
+                <div class="welcome-btn-container">
+                    <button class="btn btn-welcome" onclick="playWelcome()">
+                        🎵 Welcome Message
+                    </button>
+                </div>
+            </div>
             
             <p class="description">
                 Welcome to Mix By Design Podcast - where we explore the rich tapestry of American identity. 
@@ -275,9 +351,7 @@
             <!-- Highlighted Podcast Section -->
             <div class="podcast-section">
                 <h2>🎙️ Listen Now</h2>
-                <p style="color: white; margin-bottom: 20px; font-size: 1.05em;">
-                    Discover authentic conversations that matter
-                </p>
+                <p>Discover authentic conversations that matter</p>
                 <a href="https://rss.com/podcasts/mix-by-design/?_gl=1%2ax4a3sx%2a_gcl_au%2aMTI2NjQ1NTA4LjE3Njk5NDY2MjI.#about" 
                    target="_blank" 
                    class="podcast-link">
@@ -285,11 +359,8 @@
                 </a>
             </div>
 
-            <!-- Button Group -->
+            <!-- Button Group (Now only Donate, as Welcome is moved) -->
             <div class="button-group">
-                <button class="btn btn-welcome" onclick="playWelcome()">
-                    🎵 Welcome
-                </button>
                 <a href="https://cash.app/$MixbyDesing" target="_blank" class="btn btn-donate">
                     💝 Support Us - Donate
                 </a>
@@ -319,6 +390,8 @@
             audio.currentTime = 0;
             audio.play().catch(error => {
                 console.log('Audio playback error:', error);
+                // Fallback: Alert user if autoplay is blocked
+                alert('Click the play button again if audio doesn\'t start. (Autoplay may be blocked by browser)');
             });
         }
     </script>
