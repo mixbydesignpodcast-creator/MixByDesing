@@ -31,6 +31,7 @@ body {
     font-family: 'Inter', sans-serif;
     background: var(--primary);
     color: var(--text);
+    overflow-x: hidden;
 }
 
 /* NAVIGATION */
@@ -40,16 +41,31 @@ nav {
     width: 100%;
     background: rgba(17,24,39,0.95);
     backdrop-filter: blur(10px);
-    padding: 15px 40px;
+    padding: 12px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
-nav h2 {
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-logo {
+    height: 45px;
+    width: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.brand-name {
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    color: var(--text);
 }
 
 nav ul {
@@ -62,6 +78,7 @@ nav a {
     text-decoration: none;
     color: var(--text);
     font-weight: 500;
+    font-size: 0.95rem;
     transition: 0.3s;
 }
 
@@ -69,37 +86,79 @@ nav a:hover {
     color: var(--accent);
 }
 
+/* HAMBURGER MENU (Mobile) */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
 /* HERO */
 .hero {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 0 20px;
+    padding: 120px 20px 60px;
+    background: linear-gradient(160deg, #111827 0%, #1a2540 100%);
 }
 
 .hero h1 {
-    font-size: clamp(3rem, 6vw, 4.5rem);
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 700;
     margin-bottom: 15px;
     animation: fadeUp 1s ease forwards;
+    letter-spacing: -1px;
 }
 
 .subtitle {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2vw, 1.3rem);
     color: var(--muted);
-    margin-bottom: 40px;
-    animation: fadeUp 1.5s ease forwards;
+    margin-bottom: 30px;
+    animation: fadeUp 1.2s ease forwards;
+    max-width: 600px;
 }
 
+.hero-image {
+    max-width: 420px;
+    width: 90%;
+    margin: 30px 0;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    animation: fadeUp 1.4s ease forwards;
+    object-fit: cover;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    animation: fadeUp 1.6s ease forwards;
+}
+
+/* BUTTONS */
 .btn {
-    padding: 14px 30px;
+    padding: 14px 32px;
     border-radius: 40px;
     border: none;
     font-weight: 600;
     cursor: pointer;
     transition: 0.3s;
+    font-size: 1rem;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .btn-primary {
@@ -109,23 +168,76 @@ nav a:hover {
 
 .btn-primary:hover {
     transform: translateY(-4px);
-    box-shadow: var(--shadow);
+    box-shadow: 0 10px 30px rgba(184,92,92,0.4);
+    opacity: 0.92;
 }
 
-/* SECTIONS */
-section {
+.btn-outline {
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.3);
+    color: var(--text);
+}
+
+.btn-outline:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-4px);
+}
+
+/* SECTION BASE */
+.section-wrapper {
     padding: 100px 20px;
-    max-width: 1200px;
+    max-width: 1100px;
     margin: auto;
 }
 
-h2 {
+.section-wrapper h2 {
     text-align: center;
-    margin-bottom: 40px;
-    font-size: 2.2rem;
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--muted);
+    font-size: 1rem;
+    margin-bottom: 50px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* DIVIDER */
+.divider {
+    width: 60px;
+    height: 3px;
+    background: var(--accent);
+    margin: 15px auto 50px;
+    border-radius: 3px;
+}
+
+/* DESCRIPTION */
+#about {
+    background: var(--secondary);
+}
+
+#about .section-wrapper {
+    text-align: center;
+}
+
+.description {
+    max-width: 750px;
+    margin: auto;
+    font-size: 1.1rem;
+    color: var(--muted);
+    line-height: 1.9;
 }
 
 /* VIDEO */
+#video {
+    background: var(--primary);
+}
+
 video {
     width: 100%;
     max-width: 800px;
@@ -136,52 +248,237 @@ video {
 }
 
 /* PODCAST EMBED */
+#listen {
+    background: var(--secondary);
+}
+
 .embed-container {
-    display: flex;
-    justify-content: center;
+    max-width: 800px;
+    margin: auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.embed-container iframe {
+    width: 100%;
+    display: block;
 }
 
 /* EPISODES */
+#episodes {
+    background: var(--primary);
+}
+
 .episodes-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
 }
 
 .episode-card {
     background: var(--secondary);
-    padding: 25px;
+    padding: 28px;
     border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.05);
     transition: 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .episode-card:hover {
     transform: translateY(-6px);
     box-shadow: var(--shadow);
+    border-color: rgba(184,92,92,0.3);
+}
+
+.episode-number {
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.episode-card h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.episode-card p {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+/* DOCUMENTS */
+#research {
+    background: var(--secondary);
+}
+
+.docs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+.doc-card {
+    background: var(--primary);
+    padding: 30px;
+    border-radius: 16px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text);
+    border: 1px solid rgba(255,255,255,0.07);
+    transition: 0.3s;
+}
+
+.doc-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+    box-shadow: var(--shadow);
+}
+
+.doc-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.doc-card h3 {
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.doc-card p {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+/* SUPPORT */
+#support {
+    background: linear-gradient(135deg, #1a2540, #111827);
+    text-align: center;
+}
+
+.support-box {
+    background: var(--secondary);
+    max-width: 550px;
+    margin: auto;
+    padding: 50px 40px;
+    border-radius: 24px;
+    border: 1px solid rgba(255,255,255,0.07);
+    box-shadow: var(--shadow);
+}
+
+.support-box p {
+    color: var(--muted);
+    margin-bottom: 30px;
+    font-size: 1rem;
+    line-height: 1.8;
 }
 
 /* FOOTER */
 footer {
-    text-align: center;
-    padding: 60px 20px;
     background: #0B0F19;
-    color: var(--muted);
+    padding: 60px 20px 40px;
+    text-align: center;
 }
 
-/* ANIMATION */
+.footer-logo {
+    height: 70px;
+    width: auto;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    object-fit: cover;
+}
+
+.footer-text {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+}
+
+.footer-copy {
+    color: rgba(156,163,175,0.5);
+    font-size: 0.8rem;
+    margin-top: 20px;
+}
+
+/* ANIMATIONS */
 @keyframes fadeUp {
-    from {opacity: 0; transform: translateY(20px);}
-    to {opacity: 1; transform: translateY(0);}
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Scroll Reveal */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* MOBILE */
-@media(max-width:768px){
+@media (max-width: 768px) {
     nav {
-        padding: 15px 20px;
+        padding: 12px 20px;
     }
 
     nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(17,24,39,0.98);
+        padding: 20px;
         gap: 15px;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    nav ul.open {
+        display: flex;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .hero {
+        padding: 100px 20px 60px;
+    }
+
+    .hero-image {
+        max-width: 300px;
+    }
+
+    .support-box {
+        padding: 35px 25px;
+    }
+
+    .section-wrapper {
+        padding: 70px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .brand-name {
+        display: none;
     }
 }
 </style>
@@ -189,87 +486,222 @@ footer {
 
 <body>
 
-<!-- NAVBAR -->
+<!-- NAVIGATION -->
 <nav>
-    <h2>Mix By Design</h2>
-    <ul>
+    <div class="nav-left">
+        <img src="logo1.jpg" alt="Mix By Design Logo" class="nav-logo">
+        <span class="brand-name">Mix By Design</span>
+    </div>
+
+    <ul id="nav-menu">
+        <li><a href="#about">About</a></li>
         <li><a href="#episodes">Episodes</a></li>
         <li><a href="#video">Video</a></li>
         <li><a href="#listen">Listen</a></li>
         <li><a href="#support">Support</a></li>
     </ul>
+
+    <div class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
     <h1>Mix By Design</h1>
     <p class="subtitle">Perspectives From Both Sides of America</p>
-    <button class="btn btn-primary" onclick="playWelcome()">Play Welcome</button>
+
+    <img src="misbydesing.jpg" alt="Mix By Design" class="hero-image">
+
+    <div class="hero-buttons">
+        <button class="btn btn-primary" onclick="playWelcome()">
+            ▶ Play Welcome
+        </button>
+        <a href="https://rss.com/podcasts/mix-by-design/?_gl=1%2ax4a3sx%2a_gcl_au%2aMTI2NjQ1NTA4LjE3Njk5NDY2MjI.#about"
+           target="_blank" class="btn btn-outline">
+            📻 Subscribe Now
+        </a>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <div class="section-wrapper reveal">
+        <h2>About The Podcast</h2>
+        <div class="divider"></div>
+        <p class="description">
+            Welcome to Mix By Design — where we explore the rich tapestry of American identity.
+            Join us as we share authentic conversations bridging perspectives as a Black and White
+            American family, exploring politics, culture, and the values that unite us all.
+            This is not just a podcast — it's a movement.
+        </p>
+    </div>
 </section>
 
 <!-- VIDEO -->
 <section id="video">
-    <h2>Featured Video</h2>
-    <video controls>
-        <source src="aadonis dancing.mp4" type="video/mp4">
-    </video>
+    <div class="section-wrapper reveal">
+        <h2>Featured Video</h2>
+        <div class="divider"></div>
+        <p class="section-subtitle">Watch Aadonis in action 🎬</p>
+        <video controls>
+            <source src="aadonis dancing.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
 </section>
 
-<!-- PODCAST EMBED -->
+<!-- LISTEN / SPOTIFY EMBED -->
 <section id="listen">
-    <h2>Listen On Spotify</h2>
-    <div class="embed-container">
-        <!-- Replace with your real Spotify embed link -->
-        <iframe style="border-radius:12px" 
-        src="https://open.spotify.com/embed/show/yourshowid"
-        width="100%" height="232" frameBorder="0"
-        allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-        </iframe>
+    <div class="section-wrapper reveal">
+        <h2>Listen Now</h2>
+        <div class="divider"></div>
+        <p class="section-subtitle">Stream Mix By Design on your favorite platform</p>
+        <div class="embed-container">
+            <!-- Replace YOUR_SHOW_ID with your real Spotify show ID -->
+            <iframe
+                style="border-radius:12px"
+                src="https://open.spotify.com/embed/show/YOUR_SHOW_ID?utm_source=generator&theme=0"
+                width="100%"
+                height="232"
+                frameBorder="0"
+                allowfullscreen=""
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy">
+            </iframe>
+        </div>
     </div>
 </section>
 
 <!-- EPISODES -->
 <section id="episodes">
-    <h2>Latest Episodes</h2>
-    <div class="episodes-grid">
-        <div class="episode-card">
-            <h3>Welcome to Mix By Design</h3>
-            <p>Introduction Episode</p>
-        </div>
+    <div class="section-wrapper reveal">
+        <h2>Latest Episodes</h2>
+        <div class="divider"></div>
+        <p class="section-subtitle">Authentic conversations that matter. New episodes coming soon.</p>
 
-        <div class="episode-card">
-            <h3>Episode 2</h3>
-            <p>Coming Soon</p>
+        <div class="episodes-grid">
+            <!-- Episode 1 -->
+            <div class="episode-card">
+                <span class="episode-number">Episode 01</span>
+                <h3>Welcome to Mix By Design</h3>
+                <p>Our introductory episode — who we are, why we started, and what this podcast means to us.</p>
+                <button class="btn btn-primary" onclick="playWelcome()">▶ Play Episode</button>
+            </div>
+
+            <!-- Episode 2 -->
+            <div class="episode-card">
+                <span class="episode-number">Episode 02</span>
+                <h3>Episode Title Coming Soon</h3>
+                <p>Stay tuned — new conversations are on the way.</p>
+            </div>
+
+            <!-- Episode 3 -->
+            <div class="episode-card">
+                <span class="episode-number">Episode 03</span>
+                <h3>Episode Title Coming Soon</h3>
+                <p>Stay tuned — new conversations are on the way.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- RESEARCH DOCS -->
+<section id="research">
+    <div class="section-wrapper reveal">
+        <h2>Research & Resources</h2>
+        <div class="divider"></div>
+        <p class="section-subtitle">Documents and deep dives referenced on the podcast.</p>
+
+        <div class="docs-grid">
+            <a href="#" class="doc-card">
+                <div class="doc-icon">📄</div>
+                <h3>Research Doc 1</h3>
+                <p>Coming Soon</p>
+            </a>
+            <a href="#" class="doc-card">
+                <div class="doc-icon">📄</div>
+                <h3>Research Doc 2</h3>
+                <p>Coming Soon</p>
+            </a>
+            <a href="#" class="doc-card">
+                <div class="doc-icon">📄</div>
+                <h3>Research Doc 3</h3>
+                <p>Coming Soon</p>
+            </a>
         </div>
     </div>
 </section>
 
 <!-- SUPPORT -->
 <section id="support">
-    <h2>Support The Podcast</h2>
-    <div style="text-align:center;">
-        <a href="https://cash.app/$MixbyDesing" target="_blank" class="btn btn-primary">
-            Donate
-        </a>
+    <div class="section-wrapper reveal">
+        <h2>Support The Show</h2>
+        <div class="divider"></div>
+        <div class="support-box">
+            <p>
+                Your support keeps this podcast running and allows us to keep
+                bringing authentic, unfiltered conversations to the world.
+                Every contribution means the world to us. Thank you 💝
+            </p>
+            <a href="https://cash.app/$MixbyDesing" target="_blank" class="btn btn-primary">
+                💝 Donate via Cash App
+            </a>
+        </div>
     </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-    <p>© 2026 Mix By Design Podcast. All rights reserved.</p>
+    <img src="logo1.jpg" alt="Mix By Design Logo" class="footer-logo">
+    <p class="footer-text">
+        Thank you for tuning in. Your support helps us continue this important conversation.
+    </p>
+    <p class="footer-copy">© 2026 Mix By Design Podcast. All rights reserved.</p>
 </footer>
 
+<!-- AUDIO -->
 <audio id="welcomeAudio">
     <source src="welcometomix.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
 </audio>
 
 <script>
+// Audio Player
 function playWelcome() {
     const audio = document.getElementById('welcomeAudio');
     audio.currentTime = 0;
     audio.play().catch(() => {
-        alert("Tap again if audio doesn't start.");
+        alert("Tap the button again if audio doesn't start.");
     });
 }
+
+// Mobile Menu Toggle
+function toggleMenu() {
+    const menu = document.getElementById('nav-menu');
+    menu.classList.toggle('open');
+}
+
+// Close menu when link clicked
+document.querySelectorAll('#nav-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+        document.getElementById('nav-menu').classList.remove('open');
+    });
+});
+
+// Scroll Reveal Animation
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.15 });
+
+reveals.forEach(el => observer.observe(el));
 </script>
 
 </body>
