@@ -1,520 +1,276 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mix By Design Podcast</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mix By Design Podcast</title>
 
-        html {
-            scroll-behavior: smooth;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-        :root {
-            --red: #B22234;
-            --navy: #001F3F;
-            --white: #FFFFFF;
-            --light-gray: #F8F9FA;
-            --dark-gray: #333333;
-            --shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            --shadow-light: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: 'Georgia', 'Times New Roman', serif;
-            background: var(--navy);
-            color: var(--white);
-            min-height: 100vh;
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
+html {
+    scroll-behavior: smooth;
+}
 
-        /* Patriotic Stars Background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(2px 2px at 20px 30px, var(--white) 50%, transparent 70%),
-                radial-gradient(2px 2px at 80px 120px, var(--white) 50%, transparent 70%),
-                radial-gradient(1.5px 1.5px at 40px 80px, var(--white) 50%, transparent 70%),
-                radial-gradient(2.5px 2.5px at 120px 50px, var(--white) 50%, transparent 70%),
-                radial-gradient(1px 1px at 90px 160px, var(--white) 50%, transparent 70%),
-                radial-gradient(2px 2px at 160px 100px, var(--white) 50%, transparent 70%),
-                radial-gradient(1.5px 1.5px at 60px 200px, var(--white) 50%, transparent 70%);
-            background-repeat: repeat;
-            background-size: 200px 250px;
-            pointer-events: none;
-            z-index: 1;
-            opacity: 0.3;
-        }
+:root {
+    --primary: #111827;
+    --secondary: #1F2937;
+    --accent: #B85C5C;
+    --text: #F3F4F6;
+    --muted: #9CA3AF;
+    --shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
 
-        .main-content {
-            position: relative;
-            z-index: 2;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--primary);
+    color: var(--text);
+}
 
-        /* Hero Section - Mimics Tucker Carlson hero with big play/subscribe */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            background: linear-gradient(135deg, var(--red) 0%, var(--navy) 50%, var(--red) 100%);
-        }
+/* NAVIGATION */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(17,24,39,0.95);
+    backdrop-filter: blur(10px);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: inherit;
-            opacity: 0.9;
-            z-index: -1;
-        }
+nav h2 {
+    font-weight: 700;
+    font-size: 1.2rem;
+}
 
-        .hero h1 {
-            font-size: clamp(3.5em, 8vw, 6em);
-            background: linear-gradient(135deg, var(--white), rgba(255,255,255,0.8));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-            font-weight: bold;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
-        }
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
 
-        .hero .subtitle {
-            font-size: clamp(1.3em, 4vw, 2em);
-            color: rgba(255,255,255,0.95);
-            margin-bottom: 50px;
-            font-style: italic;
-            font-weight: 500;
-            max-width: 800px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
+nav a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+    transition: 0.3s;
+}
 
-        .hero-buttons {
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+nav a:hover {
+    color: var(--accent);
+}
 
-        .hero .btn {
-            padding: 20px 50px;
-            font-size: 1.3em;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.4s ease;
-            font-weight: bold;
-            letter-spacing: 1px;
-            min-width: 250px;
-            box-shadow: var(--shadow-light);
-            backdrop-filter: blur(10px);
-        }
+/* HERO */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+}
 
-        .btn-welcome {
-            background: rgba(255,255,255,0.2);
-            color: var(--white);
-            border: 2px solid rgba(255,255,255,0.4);
-        }
+.hero h1 {
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    margin-bottom: 15px;
+    animation: fadeUp 1s ease forwards;
+}
 
-        .btn-welcome:hover {
-            background: rgba(255,255,255,0.4);
-            transform: scale(1.05) translateY(-5px);
-            box-shadow: var(--shadow);
-        }
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--muted);
+    margin-bottom: 40px;
+    animation: fadeUp 1.5s ease forwards;
+}
 
-        .btn-subscribe {
-            background: linear-gradient(135deg, var(--red), #A61C2E);
-            color: var(--white);
-        }
+.btn {
+    padding: 14px 30px;
+    border-radius: 40px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
 
-        .btn-subscribe:hover {
-            transform: scale(1.05) translateY(-5px);
-            box-shadow: 0 15px 40px rgba(178, 34, 52, 0.5);
-        }
+.btn-primary {
+    background: var(--accent);
+    color: white;
+}
 
-        /* Description Section */
-        .description-section {
-            padding: 100px 0;
-            text-align: center;
-            background: rgba(0,0,0,0.4);
-            backdrop-filter: blur(20px);
-        }
+.btn-primary:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+}
 
-        .description-section .description {
-            font-size: 1.3em;
-            color: rgba(255,255,255,0.9);
-            line-height: 1.8;
-            max-width: 900px;
-            margin: 0 auto 60px;
-        }
+/* SECTIONS */
+section {
+    padding: 100px 20px;
+    max-width: 1200px;
+    margin: auto;
+}
 
-        /* Episodes Section - Expandable grid like Tucker's shows */
-        .episodes-section {
-            padding: 100px 0;
-            background: var(--navy);
-        }
+h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.2rem;
+}
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 80px;
-        }
+/* VIDEO */
+video {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 20px;
+    display: block;
+    margin: auto;
+    box-shadow: var(--shadow);
+}
 
-        .section-header h2 {
-            font-size: clamp(2.5em, 6vw, 4em);
-            color: var(--white);
-            margin-bottom: 20px;
-            letter-spacing: 1.5px;
-        }
+/* PODCAST EMBED */
+.embed-container {
+    display: flex;
+    justify-content: center;
+}
 
-        .section-header p {
-            font-size: 1.3em;
-            color: rgba(255,255,255,0.8);
-            max-width: 700px;
-            margin: 0 auto;
-        }
+/* EPISODES */
+.episodes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+    gap: 30px;
+}
 
-        .episodes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+.episode-card {
+    background: var(--secondary);
+    padding: 25px;
+    border-radius: 16px;
+    transition: 0.3s ease;
+}
 
-        .episode-card {
-            background: rgba(255,255,255,0.05);
-            border-radius: 20px;
-            overflow: hidden;
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.4s ease;
-            cursor: pointer;
-            position: relative;
-        }
+.episode-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow);
+}
 
-        .episode-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow);
-            background: rgba(255,255,255,0.1);
-        }
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 60px 20px;
+    background: #0B0F19;
+    color: var(--muted);
+}
 
-        .episode-thumbnail {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, var(--red), var(--navy));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4em;
-            color: var(--white);
-        }
+/* ANIMATION */
+@keyframes fadeUp {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
 
-        .episode-content {
-            padding: 30px;
-        }
+/* MOBILE */
+@media(max-width:768px){
+    nav {
+        padding: 15px 20px;
+    }
 
-        .episode-content h3 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-            color: var(--white);
-        }
-
-        .episode-meta {
-            color: rgba(255,255,255,0.7);
-            margin-bottom: 20px;
-            font-size: 1.1em;
-        }
-
-        .episode-card .btn {
-            width: 100%;
-            padding: 15px;
-            font-size: 1.1em;
-            min-width: auto;
-            background: linear-gradient(135deg, var(--red), #A61C2E);
-            color: var(--white);
-        }
-
-        .episode-card .btn:hover {
-            background: linear-gradient(135deg, #A61C2E, var(--red));
-            transform: scale(1.02);
-        }
-
-        /* Research Section - Expandable for documents */
-        .research-section {
-            padding: 100px 0;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(20px);
-        }
-
-        .docs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto 60px;
-        }
-
-        .doc-card {
-            background: rgba(255,255,255,0.1);
-            border-radius: 16px;
-            padding: 40px;
-            text-align: center;
-            text-decoration: none;
-            color: var(--white);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .doc-card:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-light);
-            color: var(--white);
-        }
-
-        .doc-card h3 {
-            font-size: 1.4em;
-            margin-bottom: 10px;
-        }
-
-        .doc-card p {
-            color: rgba(255,255,255,0.8);
-        }
-
-        /* CTA Section */
-        .cta-section {
-            padding: 80px 0;
-            text-align: center;
-            background: linear-gradient(135deg, var(--red), var(--navy));
-        }
-
-        .cta-section .btn {
-            font-size: 1.4em;
-            padding: 25px 60px;
-            min-width: 300px;
-            display: inline-block;
-        }
-
-        /* Footer */
-        footer {
-            padding: 60px 0 40px;
-            text-align: center;
-            background: rgba(0,0,0,0.8);
-        }
-
-        .logo-container {
-            margin-bottom: 30px;
-        }
-
-        .logo-container img {
-            max-width: 150px;
-            height: auto;
-            filter: drop-shadow(0 6px 20px rgba(0,0,0,0.5));
-            border-radius: 12px;
-        }
-
-        .message {
-            font-size: 1.1em;
-            color: rgba(255,255,255,0.7);
-            max-width: 700px;
-            margin: 0 auto;
-            font-style: italic;
-        }
-
-        audio {
-            display: none;
-        }
-
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            .main-content {
-                padding: 0 15px;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .btn {
-                min-width: 280px;
-                max-width: 100%;
-            }
-
-            .episodes-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .docs-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .section-header h2 {
-                font-size: 2.5em;
-            }
-
-            .description-section,
-            .episodes-section,
-            .research-section {
-                padding: 60px 0;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                letter-spacing: 1px;
-            }
-
-            .hero-buttons {
-                gap: 20px;
-            }
-        }
-    </style>
+    nav ul {
+        gap: 15px;
+    }
+}
+</style>
 </head>
+
 <body>
-    <div class="main-content">
-        <!-- Hero Section -->
-        <section class="hero">
-            <h1>Mix By Design</h1>
-            <p class="subtitle">Perspectives From Both Sides of America</p>
-            <div class="hero-buttons">
-                <button class="btn btn-welcome" onclick="playWelcome()">
-                    ▶️ Play Welcome Message
-                </button>
-                <a href="https://rss.com/podcasts/mix-by-design/?_gl=1%2ax4a3sx%2a_gcl_au%2aMTI2NjQ1NTA4LjE3Njk5NDY2MjI.#about" target="_blank" class="btn btn-subscribe">
-                    📻 Subscribe Now
-                </a>
-            </div>
-        </section>
 
-        <!-- Description -->
-        <section class="description-section">
-            <p class="description">
-                Welcome to Mix By Design Podcast - where we explore the rich tapestry of American identity. 
-                Join us as we share authentic conversations bridging perspectives as a Black and White American family, 
-                exploring politics, culture, and the values that unite us.
-            </p>
-        </section>
+<!-- NAVBAR -->
+<nav>
+    <h2>Mix By Design</h2>
+    <ul>
+        <li><a href="#episodes">Episodes</a></li>
+        <li><a href="#video">Video</a></li>
+        <li><a href="#listen">Listen</a></li>
+        <li><a href="#support">Support</a></li>
+    </ul>
+</nav>
 
-        <!-- Episodes Section - Ready to grow: Add more .episode-card divs as you upload episodes -->
-        <section class="episodes-section">
-            <div class="section-header">
-                <h2>Latest Episodes</h2>
-                <p>Discover authentic conversations that matter. New episodes coming soon.</p>
-            </div>
-            <div class="episodes-grid">
-                <!-- Featured/First Episode Card - Duplicate and customize for more -->
-                <div class="episode-card">
-                    <div class="episode-thumbnail">🎙️</div>
-                    <div class="episode-content">
-                        <h3>Welcome to Mix By Design</h3>
-                        <div class="episode-meta">Latest • </div>
-                        <button class="btn" onclick="playWelcome()">Play Episode</button>
-                    </div>
-                </div>
-                <!-- Placeholder Cards - Replace with real thumbnails, titles, links/audio -->
-                <div class="episode-card">
-                    <div class="episode-thumbnail">🎙️ #2</div>
-                    <div class="episode-content">
-                        <h3>Episode Title 2</h3>
-                        <div class="episode-meta">Coming Soon</div>
-                        <a href="#" class="btn">Play</a>
-                    </div>
-                </div>
-                <div class="episode-card">
-                    <div class="episode-thumbnail">🎙️ #3</div>
-                    <div class="episode-content">
-                        <h3>Episode Title 3</h3>
-                        <div class="episode-meta">Coming Soon</div>
-                        <a href="#" class="btn">Play</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- HERO -->
+<section class="hero">
+    <h1>Mix By Design</h1>
+    <p class="subtitle">Perspectives From Both Sides of America</p>
+    <button class="btn btn-primary" onclick="playWelcome()">Play Welcome</button>
+</section>
 
-        <!-- Research Documents Section - Ready to grow: Add more .doc-card links -->
-        <section class="research-section">
-            <div class="section-header">
-                <h2>Research & Documents</h2>
-                <p>Deep dives and resources shared on the podcast.</p>
-            </div>
-            <div class="docs-grid">
-                <!-- Placeholder - Add <a class="doc-card" href="your-doc.pdf" target="_blank"> -->
-                <a href="#" class="doc-card">
-                    <h3>Research Doc 1</h3>
-                    <p>Download PDF • Coming Soon</p>
-                </a>
-                <a href="#" class="doc-card">
-                    <h3>Research Doc 2</h3>
-                    <p>Download PDF • Coming Soon</p>
-                </a>
-                <a href="#" class="doc-card">
-                    <h3>Research Doc 3</h3>
-                    <p>Download PDF • Coming Soon</p>
-                </a>
-            </div>
-        </section>
+<!-- VIDEO -->
+<section id="video">
+    <h2>Featured Video</h2>
+    <video controls>
+        <source src="aadonis dancing.mp4" type="video/mp4">
+    </video>
+</section>
 
-        <!-- CTA Donate -->
-        <section class="cta-section">
-            <a href="https://cash.app/$MixbyDesing" target="_blank" class="btn btn-donate">
-                💝 Support Us - Donate Today
-            </a>
-        </section>
-
-        <!-- Footer -->
-        <footer>
-            <div class="logo-container">
-                <img src="logo1.jpg" alt="Mix By Design Logo">
-            </div>
-            <p class="message">
-                Thank you for tuning in. Your support helps us continue this important conversation.
-            </p>
-        </footer>
+<!-- PODCAST EMBED -->
+<section id="listen">
+    <h2>Listen On Spotify</h2>
+    <div class="embed-container">
+        <!-- Replace with your real Spotify embed link -->
+        <iframe style="border-radius:12px" 
+        src="https://open.spotify.com/embed/show/yourshowid"
+        width="100%" height="232" frameBorder="0"
+        allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+        </iframe>
     </div>
+</section>
 
-    <!-- Audio Element -->
-    <audio id="welcomeAudio">
-        <source src="welcometomix.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
+<!-- EPISODES -->
+<section id="episodes">
+    <h2>Latest Episodes</h2>
+    <div class="episodes-grid">
+        <div class="episode-card">
+            <h3>Welcome to Mix By Design</h3>
+            <p>Introduction Episode</p>
+        </div>
 
-    <script>
-        function playWelcome() {
-            const audio = document.getElementById('welcomeAudio');
-            audio.currentTime = 0;
-            audio.play().catch(error => {
-                console.log('Audio playback error:', error);
-                alert('Click the play button again if audio doesn\'t start. (Autoplay may be blocked by browser)');
-            });
-        }
-    </script>
+        <div class="episode-card">
+            <h3>Episode 2</h3>
+            <p>Coming Soon</p>
+        </div>
+    </div>
+</section>
+
+<!-- SUPPORT -->
+<section id="support">
+    <h2>Support The Podcast</h2>
+    <div style="text-align:center;">
+        <a href="https://cash.app/$MixbyDesing" target="_blank" class="btn btn-primary">
+            Donate
+        </a>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Mix By Design Podcast. All rights reserved.</p>
+</footer>
+
+<audio id="welcomeAudio">
+    <source src="welcometomix.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function playWelcome() {
+    const audio = document.getElementById('welcomeAudio');
+    audio.currentTime = 0;
+    audio.play().catch(() => {
+        alert("Tap again if audio doesn't start.");
+    });
+}
+</script>
+
 </body>
 </html>
