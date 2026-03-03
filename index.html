@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mix By Design Podcast</title>
 
+<!-- SEO Meta Tags -->
+<meta name="description" content="Mix By Design Podcast - Perspectives From Both Sides of America">
+<meta property="og:title" content="Mix By Design Podcast">
+<meta property="og:description" content="Authentic conversations bridging perspectives as a Black and White American family">
+<meta property="og:image" content="mixbydesign.jpg">
+<meta property="og:url" content="https://mixbydesign.com">
+<meta name="twitter:card" content="summary_large_image">
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -513,7 +521,7 @@ footer {
     <h1>Mix By Design</h1>
     <p class="subtitle">Perspectives From Both Sides of America</p>
 
-    <img src="misbydesing.jpg" alt="Mix By Design" class="hero-image">
+    <img src="mixbydesign.jpg" alt="mix by design" class="hero-image">
 
     <div class="hero-buttons">
         <button class="btn btn-primary" onclick="playWelcome()">
@@ -560,10 +568,10 @@ footer {
         <div class="divider"></div>
         <p class="section-subtitle">Stream Mix By Design on your favorite platform</p>
         <div class="embed-container">
-            <!-- Replace YOUR_SHOW_ID with your real Spotify show ID -->
+            <!-- Fixed Spotify embed -->
             <iframe
                 style="border-radius:12px"
-                src="https://open.spotify.com/embed/show/YOUR_SHOW_ID?utm_source=generator&theme=0"
+                src="https://open.spotify.com/embed/show/5s6KkbFwzLPtb2DKz6ZH2a?utm_source=generator&theme=0"
                 width="100%"
                 height="232"
                 frameBorder="0"
@@ -646,7 +654,8 @@ footer {
                 bringing authentic, unfiltered conversations to the world.
                 Every contribution means the world to us. Thank you 💝
             </p>
-            <a href="https://cash.app/$MixbyDesing" target="_blank" class="btn btn-primary">
+            <!-- Fixed Cash App link (corrected typo) -->
+            <a href="https://cash.app/$MixbyDesign" target="_blank" class="btn btn-primary">
                 💝 Donate via Cash App
             </a>
         </div>
@@ -702,6 +711,23 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 
 reveals.forEach(el => observer.observe(el));
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if(targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if(targetElement) {
+            window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
 </script>
 
 </body>
